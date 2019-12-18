@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#define MAX 10
+
+  struct Date{
+    int year;
+    int month;
+    int day;
+  };
+
+  struct Lotto{
+  	Date date;
+	  int num[6]; 
+  };
+  
+  int duplicate(int num[],int pos){
+  	for(int i=0;i<pos;i++)
+  	  if(num[i]==num[pos]) {
+  	  	return 1;
+  	  }
+	return 0;
+  }
+  int main(){
+  	
+  	Lotto lotto;
+  	srand(time(NULL));
+  	
+  	printf("Enter year:");
+  	scanf("%d",&lotto.date.year);
+  	printf("Enter month:");
+  	scanf("%d",&lotto.date.month);
+  	printf("Enter day:");
+  	scanf("%d",&lotto.date.day);
+  	printf("Drawing six lotto numbers ...\n");
+  	
+  	for(int i=0;i<6;i++){
+  		do{
+  		  lotto.num[i]=rand()%49+1;
+  		}while(duplicate(lotto.num,i));	
+  	}
+  	
+  	
+  	printf("Summary\n");
+  	printf("Date:%d/%d/%d\n",lotto.date.year,lotto.date.month,lotto.date.day);
+  	printf("Winning numbers:");
+	  for(int i=0;i<6;i++){
+  		printf("% 2d",lotto.num[i]);
+  	}
+  	
+  	
+  }
